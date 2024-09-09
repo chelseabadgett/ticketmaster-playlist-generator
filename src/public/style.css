@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+	background-color: #997eb1;
+	margin: 2em 3em;
+}
+
+h1 {
+	margin: 0;
+}
+
+header {
+	font-family: "Poppins", sans-serif;
+	color: #ffffff;
+}
+
+div.event {
+	border-radius: 20px;
+	background-color: #ffffffbd;
+	padding: 1.5em 0;
+	margin: 1em;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+div.spotify-embeds {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+div.spotify-embeds div {
+	margin-right: 1rem;
+}
+
+.concert-info {
+	color: #474646;
+	display: flex;
+	width: 300px;
+}
+
+.event-name {
+	color: black;
+}
+
+.concert-info .col-1 {
+	margin-right: 1em;
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.concert-info .col-2 .details {
+	margin-bottom: 1.5rem;
+}
+
+.concert-info .col-1 {
+	justify-content: space-evenly;
+}
+
+* {
+	font-family: Averta, helvetica, arial, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: #0d6efd;
+	font-weight: 800;
+}
+
+@media (max-width: 1375px) {
+	.concert-info {
+		margin-bottom: 1.5rem;
+	}
+}
