@@ -23,8 +23,7 @@ export const getSpotifyUsersTopTrackIds = async (spotifyAccessToken) => {
 	return topTracks.items.map((item) => item.id);
 };
 
-export const getSpotifyTopSongRecommendationsForArtist = async (
-	topTrackIds,
+export const getSpotifyTopSongsForArtist = async (
 	artistName,
 	spotifyAccessToken
 ) => {
@@ -37,26 +36,24 @@ export const getSpotifyTopSongRecommendationsForArtist = async (
 
 	console.log("artists", artists);
 
-	let recommendations = await SpotifyApi.getRecommendationsForArtist(
+	let artistTopTracks = await SpotifyApi.getTopTracksByArtistId(
 		spotifyAccessToken,
-		topTrackIds,
 		artistId
 	);
 
-	recommendations = recommendations.tracks.map((item) => {
-		return {
-			artistName: item.artists[0].name,
-			artistId: item.artists[0].id,
-			externalUrl: item.external_urls.spotify,
-			songName: item.name,
-			id: item.id,
-			uri: item.uri,
-		};
-	});
+	if (!artistTopTracks.tracks || artistTopTracks.tracks.length === 0) {
+		console.warn(`No top tracks found for artist: ${artistName}`);
+		return [];
+	}
 
-	return recommendations
-		.filter((item) => item.artistId === artistId)
-		.slice(0, 3);
+	return artistTopTracks.tracks.slice(0, 3).map((track) => ({
+		artistName: track.artists[0].name,
+		artistId: track.artists[0].id,
+		externalUrl: track.external_urls.spotify,
+		songName: track.name,
+		id: track.id,
+		uri: track.uri,
+	}));
 };
 
 export async function redirectToAuthCodeFlow(clientId) {

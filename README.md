@@ -4,7 +4,7 @@
 
 ## Overview
 
-This is a web application that grabs the current authenticated user's top listened to songs on Spotify, the user's local Ticketmaster shows and recommends personalized songs that match the listeners music taste for concerts nearby.
+This is a web application that finds user's local Ticketmaster shows and displays top Spotify songs for those artists.
 
 ## Pre-requisites
 
@@ -25,8 +25,9 @@ To run this application you will need:
   2. Add `http://localhost:5173` as a Redirect Uri
   3. Fill out all other fields as you see fit
   4. Click `Create Application`
-- Create `.env file in the root directory with contents:
+- Create `.env.local file in the root directory with contents:
   ```
+  VITE_SPOTIFY_REDIRECT_URL=http://localhost:5173
   VITE_SPOTIFY_CLIENT_ID=<YOUR SPOTIFY CLIENT ID>
   VITE_TICKETMASTER_API_KEY=<YOUR TICKETMASTER CONSUMER KEY>
   ```

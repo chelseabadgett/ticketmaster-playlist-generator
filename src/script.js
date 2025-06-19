@@ -4,7 +4,7 @@ import { getLatLong } from "./utils/location";
 import {
 	getSpotifyUserDetails,
 	getSpotifyUsersTopTrackIds,
-	getSpotifyTopSongRecommendationsForArtist,
+	getSpotifyTopSongsForArtist,
 	redirectToAuthCodeFlow,
 } from "./utils/spotify";
 import { getRecommendedConcertsDetails } from "./utils/ticketmaster";
@@ -121,9 +121,6 @@ const runRecommenderAndUpdateUI = async () => {
 
 	updateHeaderHtml(user.displayName);
 
-	let usersTopTrackIds = await getSpotifyUsersTopTrackIds(spotifyAccessToken);
-	console.log(`!usersTopTrackIds`, usersTopTrackIds);
-
 	const userLocation = await getLatLong();
 	console.log(`!userLocation`, userLocation);
 	const recommendedConcertsResponse =
@@ -134,8 +131,7 @@ const runRecommenderAndUpdateUI = async () => {
 	);
 
 	for (let concert of recommendedConcerts) {
-		let recommendedTracks = await getSpotifyTopSongRecommendationsForArtist(
-			usersTopTrackIds,
+		let recommendedTracks = await getSpotifyTopSongsForArtist(
 			concert.artistName,
 			spotifyAccessToken
 		);

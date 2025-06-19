@@ -61,14 +61,14 @@ async function getArtistByName(accessCode, artistName) {
 	return result.json();
 }
 
-async function getRecommendationsForArtist(accessCode, trackIds, artistId) {
-	const trackIdQueryString = trackIds.toString();
-	const seedTracks = encodeURI(trackIdQueryString);
+async function getTopTracksByArtistId(accessCode, artistId) {
 	const result = await fetch(
-		`https://api.spotify.com/v1/recommendations?limit=100&seed_artists=${artistId}&seed_tracks=${seedTracks}`,
+		`https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`,
 		{
 			method: "GET",
-			headers: { Authorization: `Bearer ${accessCode}` },
+			headers: {
+				Authorization: `Bearer ${accessCode}`,
+			},
 		}
 	);
 
@@ -109,8 +109,8 @@ export default {
 	getTopTracks,
 	getTracks,
 	getArtists,
+	getTopTracksByArtistId,
 	getArtistByName,
-	getRecommendationsForArtist,
 	getEmbed,
 	getAccessToken,
 };
